@@ -21,7 +21,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Build GoogleTest
-RUN cd /usr/src/gtest && cmake . && make -j$(nproc) && cp *.a /usr/lib
+RUN cd /usr/src/gtest && cmake . && make -j$(nproc) && cp lib/*.a /usr/lib
+
 
 # Static analysis tools
 RUN pip3 install --no-cache-dir cpplint
