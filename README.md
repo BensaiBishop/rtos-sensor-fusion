@@ -20,7 +20,7 @@ git submodule update --init --recursive
 2. Build Dev Environment with Docker
 docker build -f Dockerfile.dev -t rtos-dev .
 docker run -it --rm -v $(pwd):/workspace -w /workspace rtos-dev /bin/bash
-# (If using cmd) docker run -it --rm -v %cd%:/workspace -w /workspace rtos-dev /bin/bash 
+(If using cmd) docker run -it --rm -v %cd%:/workspace -w /workspace rtos-dev /bin/bash 
 
 
 3. Build & Run
