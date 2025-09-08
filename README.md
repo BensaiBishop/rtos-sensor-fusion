@@ -36,6 +36,7 @@ ctest
 # Flowchart of Tasks (left to right)
     sensor_task --> estimator_task --> control_task --> sensor_task --> watchdog_task--> estimator_task --> control_task
 
+<<<<<<< HEAD
 # Tasks
 - Sensor Task – simulates IMU (200Hz), GPS (1Hz), Barometer (10Hz).
 - Estimator Task – an attemp at an EKF filter; integrates IMU + updates with GPS/Baro.
@@ -45,3 +46,11 @@ ctest
 
 
 
+=======
+Tasks
+Sensor Task – simulates IMU (200Hz), GPS (1Hz), Barometer (10Hz).
+Estimator Task – simple filter; integrates IMU + updates with GPS/Baro.
+Control Task – consumes state estimates, applies basic control logic.
+Watchdog Task – detects missed sensor updates, logs warnings.
+DashBoard Task - displays the task in 4 lines on the terminal for readability.
+>>>>>>> 3a8c625096be5dc6cfb95e0444030fc84daac2f9
