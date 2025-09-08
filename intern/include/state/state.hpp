@@ -8,25 +8,50 @@ extern "C" {
 #include "task.h"
 }
 
-// Vehicle state
-struct VehicleState
-{
+
+// True/simulated vehicle state (written by SensorTask)
+struct TrueState {
+    float x, y, z;   // position
+    float vx, vy, vz; // velocity
+};
+
+// Estimated state (written by EstimatorTask)
+struct EstState {
     float x, y, z;
     float vx, vy, vz;
 };
 
-// Shared sensor timestamps
+// Sensor measurements
+struct ImuMeasure {
+    float vx, vy, vz;  // linear velocity
+};
+
+struct GpsMeasure {
+    float x, y;  // position 
+};
+
+struct BaroMeasure {
+    float z;     // depth
+};
+
+// Shared sensor timestamps (for watchdog etc.)
 struct SensorTimestamps {
     TickType_t imu;
     TickType_t gps;
     TickType_t baro;
 };
 
-// Global shared objects
-extern VehicleState vehicleState;
+// Globals
+extern TrueState trueState;           // simulation
+extern EstState estState;             // filter estimate
 extern SensorTimestamps sensorTimestamps;
-extern std::mutex stateMutex;
-extern std::mutex sensorMutex;
+extern ImuMeasure imuMeas;
+extern GpsMeasure gpsMeas;
+extern BaroMeasure baroMeas;
+
+// Mutexes
+extern std::mutex stateMutex;   // protects trueState and estState
+extern std::mutex sensorMutex;  // protects sensorTimestamps
 
 #endif /*STATE_HPP*/
 
