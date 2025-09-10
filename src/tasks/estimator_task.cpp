@@ -215,7 +215,7 @@ void EstimatorTask(void* pvParameters) {
                 x_est[i] += s;
             }
 
-            // Update P = (I - K H) P
+            // Update P = (I - K H) P //TODO Consider Joseph form to correct numerical instability
             // KH is 6x6 but H has ones at (0,3),(1,4),(2,5)
             Mat6 KH = mat06();
             for(int i=0;i<6;i++) for(int j=0;j<6;j++) {

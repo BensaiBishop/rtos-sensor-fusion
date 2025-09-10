@@ -16,6 +16,7 @@ set(INCLUDE_DIRS
     ${CMAKE_SOURCE_DIR}/intern/include
     ${CMAKE_SOURCE_DIR}/intern/include/state
     ${CMAKE_SOURCE_DIR}/intern/include/tasks
+    ${CMAKE_SOURCE_DIR}/intern/include/sim
     ${CMAKE_SOURCE_DIR}/extern/FreeRTOS-Kernel/include
     ${CMAKE_SOURCE_DIR}/extern/FreeRTOS-Kernel/portable/ThirdParty/GCC/Posix
 )
@@ -31,6 +32,7 @@ set(SRC_FILES
     ${CMAKE_SOURCE_DIR}/src/tasks/control_task.cpp
     ${CMAKE_SOURCE_DIR}/src/tasks/watchdog_task.cpp
     ${CMAKE_SOURCE_DIR}/src/tasks/dashboard_task.cpp
+    ${CMAKE_SOURCE_DIR}/src/sim/trajectory.cpp
 
     # FreeRTOS kernel core
     ${CMAKE_SOURCE_DIR}/extern/FreeRTOS-Kernel/tasks.c
@@ -51,6 +53,16 @@ set(SRC_FILES
 add_executable(rtos-sensor-fusion ${SRC_FILES})
 target_include_directories(rtos-sensor-fusion PRIVATE ${INCLUDE_DIRS})
 target_link_libraries(rtos-sensor-fusion PRIVATE pthread)
+
+# Download and build GoogleTest (requires CMake 3.11+)
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/refs/heads/main.zip
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
 
 # Enable testing and add tests subdirectory
 enable_testing()

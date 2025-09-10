@@ -20,6 +20,8 @@ void DashboardTask(void* pvParameters) {
     std::cout << "\033[2J"; //clr screan
     while (true) {
         {
+            //Not RT safe
+            //TODO will consider buffering the message or using lower prior logging task
             std::cout << "\033[H"; // Move cursor to top-left
             std::cout << "| IMU: " << dashImuCounter.load() << "| GPS: " << dashGpsCounter.load() << "| Barometer:" << dashBaroCounter.load() << "| Control: " << dashControlCounter.load() << "| Estimator: " << dashEstimateCounter.load() << std::endl;
             std::cout << "| True -> X:" << trueState.x << "| Y:" << trueState.y << "| Z:" << trueState.z <<std::endl;

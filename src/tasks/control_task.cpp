@@ -60,7 +60,8 @@ void ControlTask(void* pvParameters) {
         float derivative = (error - prevError) / dt;
         prevError = error;
 
-        float control = Kp * error + Ki * integral * Kd * derivative;
+        //P+I+D
+        float control = Kp * error + Ki * integral + Kd * derivative;
         prevError = error;
 
         //clamp control

@@ -41,6 +41,15 @@ struct SensorTimestamps {
     TickType_t baro;
 };
 
+struct SensorOutput {
+    ImuMeasure imuMeas;
+    BaroMeasure baroMeas;
+    GpsMeasure gpsMeas;
+    bool baroUpdated;
+    bool gpsUpdated;
+};
+
+
 // Globals
 extern TrueState trueState;           // simulation
 extern EstState estState;             // filter estimate

@@ -20,6 +20,9 @@ int main() {
     xTaskCreate(EstimatorTask, "Estimator", 2048, nullptr, 3, nullptr);
     xTaskCreate(SensorTask, "Sensor", 2048, nullptr, 4, nullptr);
     xTaskCreate(DashboardTask, "Dashboard", 1024, nullptr, 5, nullptr);
+    std::cout << "Estimator stack high-water mark: "
+          << uxTaskGetStackHighWaterMark(NULL) << std::endl;
+
 
     vTaskStartScheduler();
 
