@@ -7,7 +7,7 @@
 - Sensor fusion via a simple estimator (IMU + GPS + barometer).
 - Fault injection and graceful degradation (GPS dropout, IMU jitter).
 - Unit & integration tests with GoogleTest.
-- CI/CD pipeline (Dockerized build, static analysis, tests on GitHub Actions).
+- TODO: CI/CD pipeline (Dockerized build, static analysis, tests on GitHub Actions).
 - MISRA C++ compliance checks with cppcheck/clang-tidy.
 
 ## Getting Started ##
